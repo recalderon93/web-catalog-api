@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["es2020", "esnext.asynciterable"],
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "pretty": true,
+    "sourceMap": true,
+    "allowJs": true,
+    "noEmit": false,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "outDir": "./build",
+    "paths": {
+      "*": ["./types/*.d.ts"]
+    }
+  },
+  "include": ["./src/**/*", "./src/types/global.d.ts"],
+  "exclude": ["node_modules", "tests"]
+}
