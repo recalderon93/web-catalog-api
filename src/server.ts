@@ -1,13 +1,12 @@
-import express, { Application, Request, Response } from 'express';
+import express, { application, Application, Request, Response } from 'express';
 import config from './config';
 import loaders from './loaders/express';
 
-async function startServer() {
+export default async function startServer() {
   const app: Application = express();
-  await loaders({ expressApp: app });
+  loaders({ expressApp: app });
   app.listen(config.port, () => {
-    console.log(`Message ${config.port}`);
+    console.log('Its over Anakin I have the High Ground');
   });
 }
-
 startServer();
