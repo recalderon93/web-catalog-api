@@ -6,7 +6,7 @@ export default async function startServer() {
   const app: Application = express();
   loaders({ expressApp: app });
   app.listen(config.port, () => {
-    console.log('Its over Anakin I have the High Ground');
+    console.log(`📡📡 Express server is Running on PORT: ${config.port}`);
   });
 }
 startServer();

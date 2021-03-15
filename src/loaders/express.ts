@@ -1,6 +1,5 @@
 import { Application, Request, Response } from 'express';
 import cors from 'cors';
-import config from '../config';
 
 export default ({ expressApp }: { expressApp: Application }) => {
   /** I shows the real origin IP in the heroku or Cloudwatch logs */
