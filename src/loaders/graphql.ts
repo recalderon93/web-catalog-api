@@ -8,26 +8,13 @@ import * as fs from 'fs';
 import { GraphQLSchema } from 'graphql';
 
 export default async ({ app }: { app: express.Application }) => {
-  /** Root Query */
-  const typeDefsRoot = gql`
-    type Query {
-      root: String
-    }
-  `;
-  const resolversRoot = {
-    Query: {
-      root: () => 'Ok Clothes Root Query',
-    },
-  };
-
-  const rootSchema: GraphQLSchema[] = [makeExecutableSchema({ typeDefs: typeDefsRoot, resolvers: resolversRoot })];
   let folders = fs.readdirSync(path.join(__dirname, '../models'));
-
+  /** Import dinamically all  */
   let importedSchemas: GraphQLSchema[] = await Promise.all(
     folders.map(folder => {
       let returnSchema = null;
       try {
-        const { schema } = require(`../models/${folder}/schema.ts`);
+        const schema = require(`../models/${folder}/graphql/schema.ts`).default;
         returnSchema = schema;
         return returnSchema;
       } catch (error) {
@@ -36,11 +23,10 @@ export default async ({ app }: { app: express.Application }) => {
       return returnSchema;
     }),
   );
+
   importedSchemas = importedSchemas.filter(item => item !== null);
 
-  const schemas: GraphQLSchema[] = rootSchema.concat(importedSchemas);
-
-  const server = new ApolloServer({ schema: mergeSchemas({ schemas }) });
+  const server = new ApolloServer({ schema: mergeSchemas({ schemas: importedSchemas }) });
 
   server.applyMiddleware({ app });
 };
