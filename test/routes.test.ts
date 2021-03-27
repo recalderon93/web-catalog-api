@@ -15,7 +15,6 @@ let server: Server;
 beforeEach(async () => {
   await loader({ expressApp: app });
   server = app.listen(4001, () => {
-    console.log('Mock Up server');
   });
 });
 afterEach(() => {
