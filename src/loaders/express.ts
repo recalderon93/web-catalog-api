@@ -8,6 +8,5 @@ export default ({ expressApp }: { expressApp: Application }) => {
   expressApp.get('/test', (req: Request, res: Response) => {
     res.status(200).send('Hello');
   });
-  console.log(config.db);
   expressApp.use(cors());
 };

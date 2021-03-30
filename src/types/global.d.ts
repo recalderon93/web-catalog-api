@@ -10,4 +10,8 @@ declare global {
   interface ResponseEdited extends Response {
     statusCode: number;
   }
+  interface UserInstance {
+    userData: UserData;
+    updateData: void;
+  }
 }

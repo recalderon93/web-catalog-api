@@ -11,3 +11,5 @@ interface UserInstance {
   userData: UserData;
   updateData: void;
 }
+
+export default UserInstance;
