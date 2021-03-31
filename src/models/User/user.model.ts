@@ -4,26 +4,6 @@ import config from '../../config';
 const { db } = config;
 
 db.sync({ force: false });
-// interface UserInstanceR extends Model {
-//   lastName: string;
-//   firstName: string;
-//   age: number;
-// }
-
-// const UserModel = db.define<UserInstanceR>('User', {
-//   firstName: {
-//     primaryKey: true,
-//     type: DataTypes.STRING,
-//   },
-//   lastName: {
-//     primaryKey: true,
-//     type: DataTypes.STRING,
-//   },
-//   age: {
-//     primaryKey: true,
-//     type: DataTypes.NUMBER,
-//   },
-// });
 
 interface UserAttributes {
   firstName: string;
