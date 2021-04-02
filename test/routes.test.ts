@@ -1,7 +1,7 @@
 import startServer from '../src/utils/startServer';
 import testModules from './testModules';
 
-const server = startServer();
+const server = startServer('testing');
 
 beforeAll(() => server.start());
 
