@@ -1,43 +1,11 @@
-/* eslint-disable import/no-unresolved */
-import express from 'express';
-import { Server } from 'node:http';
-import request, { Response } from 'supertest';
-import loader from '../src/loaders';
+import startServer from '../src/utils/startServer';
+import testModules from './testModules';
 
-interface ResponseEdited extends Response {
-  statusCode: number;
-}
+const server = startServer('testing');
 
-/** Initialization of the Express App */
-const app = express();
-let server: Server;
+beforeAll(() => server.start());
 
-beforeEach(async () => {
-  await loader({ expressApp: app });
-  server = app.listen(4001, () => {
-    console.log('test server');
-  });
-});
-afterEach(() => {
-  server.close();
-});
-describe('Should recive 200 status', () => {
-  it('should pass', async () => {
-    const res = await request('http://localhost:4001').get('/test');
-    /** @ts-ignore, statusCode is not defined inside of request.Response type */
-    expect(res.statusCode).toEqual(200);
-  });
-});
+testModules.expressServerTest();
+testModules.userCrud();
 
-describe('Testing GraphQL server', () => {
-  it('graphql user query', async done => {
-    const res = await request('http://localhost:4001')
-      .post('/graphql')
-      .send({
-        query: '{user}',
-      })
-      .set('Accept', 'application/json');
-    expect(res.body.data.user).toBe('this is a user');
-    done();
-  });
-});
+afterAll(() => server.close());
