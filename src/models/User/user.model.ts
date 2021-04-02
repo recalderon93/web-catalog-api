@@ -3,8 +3,6 @@ import config from '../../config';
 
 const { db } = config;
 
-db.sync({ force: false });
-
 interface UserAttributes {
   firstName: string;
   lastName: string;
@@ -43,7 +41,8 @@ UserModel.init(
   },
   {
     sequelize: db,
-    tableName: 'user',
+    tableName: 'Users',
+    modelName: 'User',
   },
 );
 export default UserModel;

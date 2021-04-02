@@ -10,6 +10,7 @@ const dbData = {
   username: process.env.POSTGRES_USER ? process.env.POSTGRES_USER : '',
   password: process.env.POSTGRES_PASSWORD ? process.env.POSTGRES_PASSWORD : '',
 };
+
 export default {
   port: process.env.PORT ? parseInt(process.env.PORT!, 10) : 3000,
   db: dbCreator({ ...dbData }),

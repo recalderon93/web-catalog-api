@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /pgdata
+package-lock.json
 
 .eslintcache
 # testing
