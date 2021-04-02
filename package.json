@@ -8,8 +8,8 @@
     "dev": "nodemon --files src/server.ts",
     "dev2": "nodemon --watch src/**/* -e ts,json --exec node --inspect-brk -r ts-node/register src/server.ts",
     "build": "tsc",
-    "lint:js": "eslitn . --ext .js",
-    "lint:js:fix": "npm run lint:js -- --fix",
+    "lint:ts": "eslitn . --ext .ts",
+    "lint:js:ts": "npm run lint:ts -- --fix",
     "test:related": "env-cmd -f .env.test jest --bail --findRelatedTest"
   },
   "author": "Rafael Calderon",
@@ -58,11 +58,11 @@
   },
   "husky":{
     "hooks":{
-      "pre-commit": "lint-staged"
+      "precommit": "lint-staged"
     }
   },
   "lint-staged":{
-    "**/*.js":[
+    "**/*.ts":[
       "npm run lint:js", "npm run test:related","git add"
     ]
   }
