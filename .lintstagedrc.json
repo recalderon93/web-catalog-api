@@ -1,0 +1,5 @@
+{
+  "src/**/*.{js,jsx,ts,tsx,json,css}": [
+    "npm run lint:ts"
+  ]
+}

@@ -46,7 +46,7 @@ const serverFactory: ServerFactory = (type?) => {
         if (err) {
           console.error(err.message);
         } else {
-          console.log('The server is closed');
+          // console.log('The server is closed');
         }
       });
     } else {

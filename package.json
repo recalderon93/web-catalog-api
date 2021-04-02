@@ -4,13 +4,12 @@
   "description": "The express server of the app",
   "main": "server.js",
   "scripts": {
-    "test": "env-cmd -f .env.test jest --detectOpenHandles --verbose",
+    "test": "env-cmd -f .env.test jest --detectOpenHandles --verbose --forceExit --bail",
     "dev": "nodemon --files src/server.ts",
     "dev2": "nodemon --watch src/**/* -e ts,json --exec node --inspect-brk -r ts-node/register src/server.ts",
     "build": "tsc",
-    "lint:ts": "eslitn . --ext .ts",
-    "lint:js:ts": "npm run lint:ts -- --fix",
-    "test:related": "env-cmd -f .env.test jest --bail --findRelatedTest"
+    "lint:ts": "npx eslint **/*.ts --fix",
+    "test:commit": "npm run test"
   },
   "author": "Rafael Calderon",
   "license": "MIT",
@@ -55,15 +54,5 @@
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.3",
     "ts-node": "^9.1.1"
-  },
-  "husky":{
-    "hooks":{
-      "precommit": "lint-staged"
-    }
-  },
-  "lint-staged":{
-    "**/*.ts":[
-      "npm run lint:js", "npm run test:related","git add"
-    ]
   }
 }
